@@ -1,6 +1,4 @@
-testArray = [ 'shower','flow','flight']
-let matchArray = []
-
+//Link to leetcode problem: https://leetcode.com/problems/longest-common-prefix/
 const longestCommonPrefix = function(strs) {
   if (strs.length === 0) return ''
   let prefix = strs[0]
@@ -12,5 +10,3 @@ const longestCommonPrefix = function(strs) {
   } return prefix
 
 };
-
-console.log(longestCommonPrefix(testArray))
