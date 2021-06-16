@@ -14,7 +14,7 @@ function findLongestSubstring(string) {
     seen[char] = i + 1;
   }
   return longest;
-};
+}
 
 const testString = 'longestsubstring';
 

@@ -8,12 +8,13 @@ function countUniqueValues(array) {
   let counter = 1;
   for (let j = i + 1; j < array.length; j++) {
     if (array[i] !== array[j]) {
-      counter++; 
+      counter++;
       i = j;
     }
   }
   return counter;
-
 }
 
-console.log(countUniqueValues([1,1,1,2,2,3,4,4,4,4,4,4,5,5,5,5,6,7]));
+console.log(
+  countUniqueValues([1, 1, 1, 2, 2, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 7])
+);

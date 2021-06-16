@@ -7,7 +7,7 @@ function frequencyCounter(int1, int2) {
   if (digits1.length !== digits2.length) return false;
   const digitMap1 = {};
   const digitMap2 = {};
-  for (let digit of digits1 ) {
+  for (let digit of digits1) {
     digitMap1[digit] = ++digitMap1[digit] || 1;
   }
   for (let digit of digits2) {

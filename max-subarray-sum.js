@@ -1,5 +1,5 @@
 // Given an array of integers and a number, this algorithm finds
-// the maximum sum of a contiguous subarray with the length of the 
+// the maximum sum of a contiguous subarray with the length of the
 // number passed to the function
 
 function maxSubarraySum(array, length) {

@@ -5,5 +5,5 @@ function productOfArray(array) {
   return array[0] * productOfArray(array.slice(1));
 }
 
-const testArray = [2,2,2];
+const testArray = [2, 2, 2];
 console.log(productOfArray(testArray));

@@ -8,4 +8,4 @@ function someRecursive(array, callback) {
   return someRecursive(array.slice(1), callback);
 }
 
-console.log(someRecursive([2,4,6,8], val => val % 2 === 0));
+console.log(someRecursive([2, 4, 6, 8], (val) => val % 2 === 0));

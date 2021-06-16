@@ -12,7 +12,7 @@ function isSubsequence(subsequence, sequence) {
     if (i === subsequence.length - 1) {
       return true;
     }
-  };
+  }
   return false;
 }
 

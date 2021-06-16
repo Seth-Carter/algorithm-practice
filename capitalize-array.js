@@ -6,7 +6,7 @@ function capitalizeArray(array) {
   const result = [];
   for (let item of array) {
     if (item.length > 1) {
-      result.push(capitalizeArray(item).join(''))
+      result.push(capitalizeArray(item).join(''));
     } else {
       result.push(item.toUpperCase());
     }

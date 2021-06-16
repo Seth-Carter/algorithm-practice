@@ -4,7 +4,7 @@
 function powerOf(base, exponent) {
   if (exponent === 0) return 1;
   if (exponent === 1) return base;
-  return base * powerOf(base, exponent - 1); 
+  return base * powerOf(base, exponent - 1);
 }
 
-console.log(powerOf(2,4));
+console.log(powerOf(2, 4));

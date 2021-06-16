@@ -17,16 +17,16 @@ let obj1 = {
   num: 1,
   test: [],
   data: {
-      val: 4,
-      info: {
-          isRight: true,
-          random: 66,
-          test: {
-            aNumber: 45,
-            notANumber: null
-          }
-      }
-  }
-}
+    val: 4,
+    info: {
+      isRight: true,
+      random: 66,
+      test: {
+        aNumber: 45,
+        notANumber: null,
+      },
+    },
+  },
+};
 
 console.log(stringifyNumbers(obj1));
