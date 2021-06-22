@@ -13,6 +13,6 @@ function bubbleSort(array) {
   return array;
 }
 
-const testArray = [2, 10, 1, 4, 5, 9, 6];
+const testArray = [2, 10, 1, 4, 5, 9, 6, 25, 50, 0];
 
 console.log(bubbleSort(testArray));
