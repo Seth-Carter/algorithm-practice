@@ -94,16 +94,38 @@ class DoublyLinkedList {
     if (index === this.length) return Boolean(this.push(val));
 
     const foundNode = this.get(index);
-    const nodeToSet = new Node(val);
+    const newNode = new Node(val);
     const prevNode = foundNode.prev;
 
-    prevNode.next = nodeToSet;
-    nodeToSet.prev = prevNode;
-    nodeToSet.next = foundNode;
-    foundNode.prev = nodeToSet;
+    prevNode.next = newNode;
+    newNode.prev = prevNode;
+    newNode.next = foundNode;
+    foundNode.prev = newNode;
 
     this.length++;
     return true;
+  }
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const foundNode = this.get(index);
+    foundNode.prev.next = foundNode.next;
+    foundNode.next.prev = foundNode.prev;
+    foundNode.next = null;
+    foundNode.prev = null;
+    this.length--;
+    return foundNode;
+  }
+  print() {
+    const printArray = [];
+    let current = this.head;
+    for (let i = 0; i < this.length; i++) {
+      printArray.push(current.val);
+      current = current.next;
+    }
+    return printArray;
   }
 }
 const testList = new DoublyLinkedList();
@@ -114,5 +136,5 @@ testList.push(3);
 testList.push(4);
 testList.push(5);
 
-console.log(testList.insert(3, 'test'));
-console.log(testList.get(3));
+console.log(testList.remove(3));
+console.log(testList.print());
