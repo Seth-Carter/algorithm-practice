@@ -47,10 +47,9 @@ class BinarySearchTree {
     }
     return false;
   }
-  BFS() {
+  bfs(node = this.root) {
     const queue = [];
     const visited = [];
-    let node = this.root;
     queue.push(node);
     while (queue.length) {
       node = queue.shift();
@@ -58,6 +57,16 @@ class BinarySearchTree {
       if (node.left) queue.push(node.left);
       if (node.right) queue.push(node.right);
     }
+    return visited;
+  }
+  dfs(node = this.root) {
+    const visited = [];
+    function dfsHelper(current) {
+      visited.push(current.value);
+      if (current.left) dfsHelper(current.left);
+      if (current.right) dfsHelper(current.right);
+    }
+    dfsHelper(node);
     return visited;
   }
 }
@@ -69,4 +78,5 @@ testBst.insert(45);
 testBst.insert(5);
 testBst.insert(12);
 testBst.insert(99);
-console.log(testBst.BFS());
+console.log(testBst.bfs());
+console.log(testBst.dfs());
