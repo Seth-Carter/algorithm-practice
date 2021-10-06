@@ -27,6 +27,15 @@ class Graph {
       );
     }
   }
+  removeVertex(vertex) {
+    while (this.adjacencyList[vertex].length > 0) {
+      const linkedVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, linkedVertex);
+    }
+    if (Object.prototype.hasOwnProperty.call(this.adjacencyList, vertex)) {
+      delete this.adjacencyList[vertex];
+    }
+  }
 }
 
 const g = new Graph();
@@ -34,5 +43,5 @@ g.addEdge('Dallas', 'Tokyo');
 g.addEdge('Aspen', 'Dallas');
 g.addEdge('Tokyo', 'London');
 console.log(g);
-g.removeEdge('Dallas', 'Tokyo');
+g.removeVertex('Tokyo');
 console.log(g);
