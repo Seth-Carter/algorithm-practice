@@ -36,12 +36,28 @@ class Graph {
       delete this.adjacencyList[vertex];
     }
   }
+  dfsRecursive(vertex) {
+    const result = [];
+    const visited = {};
+    const dfs = (vertex) => {
+      visited[vertex] = true;
+      result.push(vertex);
+      for (const adjacentVertex of this.adjacencyList[vertex]) {
+        if (!visited[adjacentVertex]) dfs(adjacentVertex);
+      }
+    };
+    dfs(vertex);
+    return result;
+  }
 }
 
 const g = new Graph();
-g.addEdge('Dallas', 'Tokyo');
-g.addEdge('Aspen', 'Dallas');
-g.addEdge('Tokyo', 'London');
+g.addEdge('A', 'B');
+g.addEdge('A', 'C');
+g.addEdge('B', 'D');
+g.addEdge('C', 'E');
+g.addEdge('D', 'E');
+g.addEdge('D', 'F');
+g.addEdge('E', 'F');
 console.log(g);
-g.removeVertex('Tokyo');
-console.log(g);
+console.log(g.dfsRecursive('A'));
