@@ -10,7 +10,33 @@ class WeightedGraph {
     this.adjacencyList[vertex2].push({ node: vertex1, weight });
   }
   dijkstras(start, end) {
-    return;
+    const nodes = new PriorityQueue();
+    const distances = Object.keys(this.adjacencyList).reduce(
+      (distanceObject, node) => {
+        node === start
+          ? (distanceObject[node] = 0)
+          : (distanceObject[node] = Infinity);
+        return distanceObject;
+      },
+      {}
+    );
+    const previous = Object.keys(this.adjacencyList).reduce(
+      (previousObject, node) => {
+        previousObject[node] = null;
+        return previousObject;
+      },
+      {}
+    );
+    Object.entries(distances).forEach((entry) =>
+      nodes.enqueue(entry[0], entry[1])
+    );
+    while (nodes.values.length > 0) {
+      const nextNode = nodes.dequeue();
+      if (nextNode.val === end) break;
+    }
+    console.log(previous);
+    console.log(nodes);
+    return distances;
   }
 }
 
@@ -32,8 +58,18 @@ const graph = new WeightedGraph();
 graph.addVertex('A');
 graph.addVertex('B');
 graph.addVertex('C');
+graph.addVertex('D');
+graph.addVertex('E');
+graph.addVertex('F');
 
-graph.addEdge('A', 'B', 9);
-graph.addEdge('A', 'C', 5);
-graph.addEdge('B', 'C', 7);
+graph.addEdge('A', 'B', 4);
+graph.addEdge('A', 'C', 2);
+graph.addEdge('B', 'E', 3);
+graph.addEdge('C', 'D', 2);
+graph.addEdge('C', 'F', 4);
+graph.addEdge('D', 'E', 3);
+graph.addEdge('D', 'F', 1);
+graph.addEdge('E', 'F', 1);
+
 console.log(graph.adjacencyList);
+console.log(graph.dijkstras('A'));
