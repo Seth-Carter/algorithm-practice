@@ -10,33 +10,37 @@ class WeightedGraph {
     this.adjacencyList[vertex2].push({ node: vertex1, weight });
   }
   dijkstras(start, end) {
-    const nodes = new PriorityQueue();
-    const distances = Object.keys(this.adjacencyList).reduce(
-      (distanceObject, node) => {
-        node === start
-          ? (distanceObject[node] = 0)
-          : (distanceObject[node] = Infinity);
-        return distanceObject;
-      },
-      {}
-    );
-    const previous = Object.keys(this.adjacencyList).reduce(
-      (previousObject, node) => {
-        previousObject[node] = null;
-        return previousObject;
-      },
-      {}
-    );
-    Object.entries(distances).forEach((entry) =>
-      nodes.enqueue(entry[0], entry[1])
-    );
-    while (nodes.values.length > 0) {
-      const nextNode = nodes.dequeue();
-      if (nextNode.val === end) break;
+    let nodes = new PriorityQueue();
+    let distances = {};
+    let previous = {};
+    let path = [];
+    let currentVertex;
+    nodes.enqueue(start, distances[start]);
+    for (let vertex in this.adjacencyList) {
+      vertex === start
+        ? (distances[vertex] = 0)
+        : (distances[vertex] = Infinity);
+      previous[vertex] = null;
     }
-    console.log(previous);
-    console.log(nodes);
-    return distances;
+    while (nodes.values.length) {
+      currentVertex = nodes.dequeue().val;
+      if (currentVertex === end) {
+        path.push(currentVertex);
+        while (previous[currentVertex]) {
+          path.push(previous[currentVertex]);
+          currentVertex = previous[currentVertex];
+        }
+        return path.reverse();
+      }
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        let potential = distances[currentVertex] + neighbor.weight;
+        if (potential < distances[neighbor.node]) {
+          distances[neighbor.node] = potential;
+          previous[neighbor.node] = currentVertex;
+          nodes.enqueue(neighbor.node, potential);
+        }
+      });
+    }
   }
 }
 
@@ -46,10 +50,13 @@ class PriorityQueue {
   }
   enqueue(val, priority) {
     this.values.push({ val, priority });
-    this.values.sort((a, b) => a.priority - b.priority);
+    this.sort();
   }
   dequeue() {
     return this.values.shift();
+  }
+  sort() {
+    this.values.sort((a, b) => a.priority - b.priority);
   }
 }
 
@@ -71,5 +78,4 @@ graph.addEdge('D', 'E', 3);
 graph.addEdge('D', 'F', 1);
 graph.addEdge('E', 'F', 1);
 
-console.log(graph.adjacencyList);
-console.log(graph.dijkstras('A'));
+console.log(graph.dijkstras('A', 'E'));
