@@ -1,5 +1,6 @@
 //Link to leetcode problem: https://leetcode.com/problems/search-insert-position/
 
+// O(n) time
 const naiveSearchInsert = (nums, target) => {
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] === target) {
@@ -11,6 +12,7 @@ const naiveSearchInsert = (nums, target) => {
   return nums.length;
 };
 
+// O(log(n)) time
 const searchInsert = (nums, target) => {
   let left = 0;
   let right = nums.length - 1;
