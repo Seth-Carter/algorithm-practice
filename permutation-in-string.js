@@ -3,7 +3,7 @@
 const checkInclusion = (s1, s2) => {
   let counts = {};
   let patternCounts = {};
-  let total = 0;
+  let matchTotal = 0;
 
   for (let i = 0; i < s1.length; i++) {
     patternCounts[s1[i]] = patternCounts[s1[i]] + 1 || 1;
@@ -12,17 +12,17 @@ const checkInclusion = (s1, s2) => {
   for (let i = 0; i < s2.length; i++) {
     if (patternCounts[s2[i]]) {
       counts[s2[i]] = counts[s2[i]] + 1 || 1;
-      total++;
+      matchTotal++;
 
       while (counts[s2[i]] > patternCounts[s2[i]]) {
-        total--;
-        counts[s2[i - total]] -= 1;
+        matchTotal--;
+        counts[s2[i - matchTotal]] -= 1;
       }
 
-      if (total === s1.length) return true;
+      if (matchTotal === s1.length) return true;
     } else {
       counts = {};
-      total = 0;
+      matchTotal = 0;
     }
   }
   return false;
