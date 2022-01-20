@@ -26,4 +26,3 @@ const findDisappearedNumbers = (nums) => {
    }
    return res;
 };
-};
