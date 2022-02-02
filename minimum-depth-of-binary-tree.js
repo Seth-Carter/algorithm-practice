@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/minimum-depth-of-binary-tree/
 import { Queue } from '@datastructures-js/queue';
 
 const minDepth = (root) => {
