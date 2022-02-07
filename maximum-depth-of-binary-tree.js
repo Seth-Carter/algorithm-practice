@@ -2,6 +2,7 @@
 import { Queue } from '@datastructures-js/queue';
 
 const maxDepth = (root) => {
+  // Iterative with BFS
   if (!root) return 0;
 
   const queue = new Queue();
@@ -21,4 +22,13 @@ const maxDepth = (root) => {
   }
 
   return maxDepth;
+};
+
+const recursiveMaxDepth = (root, depth = 1) => {
+  if (!root) return depth - 1;
+  if (!root.left && !root.right) return depth;
+  return Math.max(
+    maxDepth(root.left, depth + 1),
+    maxDepth(root.right, depth + 1)
+  );
 };
